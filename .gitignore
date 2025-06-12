@@ -1,0 +1,17 @@
+bin/
+
+*.class
+
+.classpath
+.project
+.settings/
+
+*.log
+*.tmp
+*.bak
+*.old
+*.swp
+*~
+
+.DS_Store
+Thumbs.db
