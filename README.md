@@ -88,7 +88,7 @@ java galgenmaennchen.Galgenmaennchen
 
 ### 📋 Vollständige Befehlsfolge (Copy & Paste)
 ```bash
-git clone [repository-url]
+git clone https://github.com/MarkMoldenhauer/Galgenmaennchen.git
 cd galgenmaennchen-projekt
 cd src
 javac galgenmaennchen/*.java galgenmaennchen/*/*.java
@@ -230,11 +230,11 @@ _|___
 
 ## 👥 Mitwirkende
 
-- **M. Moldenhauer** - Ursprünglicher Autor und Hauptentwickler
+- **MarkMoldenhauer** - Ursprünglicher Autor und Hauptentwickler
 
 ## 📝 Lizenz
 
-[Lizenzinformationen hier einfügen]
+Dieses Projekt ist unter der MIT-Lizenz lizenziert.
 
 ## 🐛 Bekannte Probleme
 
