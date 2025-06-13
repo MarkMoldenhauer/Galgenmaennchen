@@ -130,4 +130,24 @@ public class SpielAnzeige {
         for (int i = 0; i < 50; i++) System.out.println(); // „versteckt“ das Wort
         return wort;
     }
+
+    /**
+     * Zeigt ein Menü nach einer Runde an, in dem der Spieler wählen kann,
+     * ob er weiterspielen, zurück ins Hauptmenü oder das Spiel beenden möchte.
+     *
+     * @return "1" = nochmal spielen, "2" = zurück ins Hauptmenü, "3" = Spiel beenden
+     */
+    public String frageRundenMenue() {
+        String eingabe;
+        do {
+            System.out.println(Text.RUNDE_MENUE);
+            frage(Text.RUNDE_MENUE_AUSWAHL);
+            eingabe = leseEingabe();
+            if (!eingabe.equals("1") && !eingabe.equals("2") && !eingabe.equals("3")) {
+                zeigeNachricht(Text.RUNDE_MENUE_UNGUELTIG);
+            }
+        } while (!eingabe.equals("1") && !eingabe.equals("2") && !eingabe.equals("3"));
+
+        return eingabe;
+    }
 }

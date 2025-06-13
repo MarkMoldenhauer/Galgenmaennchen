@@ -19,8 +19,19 @@ public class Text {
     public static final String RICHTIG = "Richtig!";
     public static final String SIEG = "\nHerzlichen Glückwunsch! Das Wort war: ";
     public static final String NIEDERLAGE = "\nDas war leider nichts. Das Wort war: ";
-    public static final String NOCHMAL = "Noch mal spielen? Wenn ja, tippe 1 (und Enter), sonst egal was (und Enter):\n";
     public static final String TSCHUESS = "Tschüss! Bis zum nächsten Mal :-)";
+
+    /**
+     * Menü nach einer Spielrunde
+     */
+    public static final String RUNDE_MENUE = 
+        "\nWas möchtest du als Nächstes tun?\n" +
+        "1 = Noch eine Runde\n" +
+        "2 = Zurück zum Hauptmenü\n" +
+        "3 = Spiel beenden\n";
+
+    public static final String RUNDE_MENUE_AUSWAHL = "Deine Auswahl: ";
+    public static final String RUNDE_MENUE_UNGUELTIG = "Ungültige Auswahl. Bitte 1, 2 oder 3 eingeben.";
 
     /**
      *  Moduswahl
@@ -41,7 +52,7 @@ public class Text {
     public static final String GEHEIMWORT_EINGABE = "Spieler 1, gib ein geheimes Wort ein: ";
     public static final String GEHEIMWORT_UNGUELTIG = "Ungültige Eingabe. Bitte nur Buchstaben.";
     public static final String GEHEIMWORT_WIEDERHOLUNG = "Erneut eingeben: ";
-    
+
     /**
      *  ComputerRaten-Modus
      */

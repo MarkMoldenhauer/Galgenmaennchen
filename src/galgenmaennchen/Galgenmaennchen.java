@@ -16,7 +16,14 @@ import galgenmaennchen.view.Text;
  * Startpunkt des Galgenmännchen-Spiels.
  * Verantwortlich für: Initialisierung, Moduswahl, Steuerung und Spielrunden.
  * 
- * @author M. Moldenhauer
+ * Nach jeder Spielrunde wird ein Menü angeboten:
+ * <ul>
+ *     <li>1 – Noch einmal spielen</li>
+ *     <li>2 – Zurück ins Hauptmenü</li>
+ *     <li>3 – Beenden</li>
+ * </ul>
+ * 
+ * @author MarkMoldenhauer
  */
 public class Galgenmaennchen {
 
@@ -31,6 +38,11 @@ public class Galgenmaennchen {
         starteSpiel(scanner);
     }
 
+    /**
+     * Steuert den Spielablauf basierend auf dem gewählten Modus.
+     *
+     * @param scanner Scanner für Benutzereingaben
+     */
     private void starteSpiel(Scanner scanner) {
         switch (modus) {
             case COMPUTER, ZWEISPIELER -> starteNormalesSpiel();
@@ -40,68 +52,71 @@ public class Galgenmaennchen {
     }
 
     /**
-     * Führt Modus 1 & 2 aus.
+     * Führt Modus 1 & 2 aus – Spieler rät das Wort.
      */
     private void starteNormalesSpiel() {
-        boolean nochmal;
-        do {
+        while (true) {
             String wort = ermittleWort();
             anzeige.zeigeWortZumTesten(wort);
             boolean gewonnen = new SpielRunde(anzeige, wort).spielen();
-            anzeige.zeigeNachricht(gewonnen ? Text.SIEG + wort : Text.NIEDERLAGE + wort);
-            nochmal = frageNachNeustart();
-        } while (nochmal);
-        anzeige.zeigeNachricht(Text.TSCHUESS);
+            anzeige.zeigeSpielende(gewonnen, wort);
+
+            String wahl = anzeige.frageRundenMenue();
+            if (wahl.equals("1")) {
+                continue; // nochmal spielen
+            } else if (wahl.equals("2")) {
+                SpielModus neuerModus = SpielController.ermittleModus(new Scanner(System.in));
+                new Galgenmaennchen(neuerModus, new Scanner(System.in), random);
+                return;
+            } else {
+                anzeige.zeigeNachricht(Text.TSCHUESS);
+                return;
+            }
+        }
     }
 
     /**
-     * Führt Modus 3 aus: Computer rät das Wort.
+     * Führt Modus 3 aus – Computer rät das Spielerwort.
+     *
+     * @param scanner Eingabequelle für das Wort
      */
     private void starteComputerRatenSpiel(Scanner scanner) {
-        boolean nochmal;
-        do {
-            anzeige.frage(Text.GEHEIMWORT_EINGABE);
-            String wort = anzeige.leseEingabe();
-            while (!SpielLogik.istEingabeGueltig(wort)) {
-                anzeige.zeigeNachricht(Text.GEHEIMWORT_UNGUELTIG);
-                anzeige.frage(Text.GEHEIMWORT_WIEDERHOLUNG);
-                wort = anzeige.leseEingabe();
-            }
-            for (int i = 0; i < 50; i++) System.out.println(); // "Konsole löschen"
-
+        while (true) {
+            String wort = anzeige.liesGeheimesWort();
             ComputerRaten spiel = new ComputerRaten(wort, anzeige, scanner);
             spiel.spiele();
 
-            anzeige.frage(Text.NOCHMAL);
-            nochmal = anzeige.leseEingabe().equals("1");
-        } while (nochmal);
-        anzeige.zeigeNachricht(Text.TSCHUESS);
+            String wahl = anzeige.frageRundenMenue();
+            if (wahl.equals("1")) {
+                continue; // nochmal spielen
+            } else if (wahl.equals("2")) {
+                SpielModus neuerModus = SpielController.ermittleModus(scanner);
+                new Galgenmaennchen(neuerModus, scanner, random);
+                return;
+            } else {
+                anzeige.zeigeNachricht(Text.TSCHUESS);
+                return;
+            }
+        }
     }
 
+    /**
+     * Ermittelt das zu ratende Wort, je nach Spielmodus.
+     *
+     * @return gültiges Wort in Großbuchstaben
+     */
     private String ermittleWort() {
         if (modus == SpielModus.COMPUTER) {
             return new WortAPI(random).holeZufaelligesWort();
         }
-        return spielrundeLeseGeheimwort();
+        return anzeige.liesGeheimesWort();
     }
 
-    private String spielrundeLeseGeheimwort() {
-        anzeige.frage(Text.GEHEIMWORT_EINGABE);
-        String wort = anzeige.leseEingabe();
-        while (!SpielLogik.istEingabeGueltig(wort)) {
-            anzeige.zeigeNachricht(Text.GEHEIMWORT_UNGUELTIG);
-            anzeige.frage(Text.GEHEIMWORT_WIEDERHOLUNG);
-            wort = anzeige.leseEingabe();
-        }
-        for (int i = 0; i < 50; i++) System.out.println();
-        return wort;
-    }
-
-    private boolean frageNachNeustart() {
-        anzeige.frage(Text.NOCHMAL);
-        return anzeige.leseEingabe().equals("1");
-    }
-
+    /**
+     * Einstiegspunkt des Programms.
+     *
+     * @param args nicht verwendet
+     */
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         Random random = new Random();

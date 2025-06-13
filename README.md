@@ -144,6 +144,7 @@ tree galgenmaennchen/  # oder ls -la galgenmaennchen/
    - Modus 1: Automatische Wortgenerierung
    - Modus 2: Eingabe des zu erratenden Wortes
    - Modus 3: Sie geben Ihr Wort ein
+   - Modus 4: Beenden Sie das Programm
 3. **Spielrunde:** Buchstaben raten oder komplettes Wort eingeben
 4. **Spielende:** Sieg bei vollständigem Erraten oder Niederlage bei 10 Fehlern
 5. **Wiederholung:** Option für weitere Spielrunden
@@ -217,13 +218,14 @@ private static final String[] DEFAULT_WORTE = {
 ## 🎨 Beispiel-Ausgabe
 
 ```
-Aktueller Stand: P R O _ R A M M _ E R U N G
-Fehlversuche: 2/7
-Bisher geraten: [A, E, G, M, N, O, P, R, U]
+Aktueller Stand: P R O G R A _ _ I E R U _ G 
+Fehlversuche: 8/10
+Bisher geraten: [A, B, D, E, G, I, K, O, P, Q, R, S, U, V, X, Z]
+
  ______
  |    |
  |    O
- |    |
+ |   /|\
  |
 _|___
 ```
@@ -241,7 +243,7 @@ Dieses Projekt ist unter der MIT-Lizenz lizenziert.
 - API-Abhängigkeit für Online-Wortgenerierung
 - Umlaute werden derzeit nicht unterstützt
 - Nur deutsche Wörter verfügbar
-- Noch keine Option, um nach der Spielrunde ins Hauptmenü zurückzukehren (work in progress)
+- ~~Noch keine Option, um nach der Spielrunde ins Hauptmenü zurückzukehren (work in progress)~~ ✅
 
 ## 📞 Support
 
