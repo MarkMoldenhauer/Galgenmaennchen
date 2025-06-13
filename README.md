@@ -12,12 +12,14 @@ Galgenmännchen ist ein Wortratespiel, bei dem ein Spieler versucht, ein geheime
   - 🤖 **Einzelspieler gegen Computer** - Erraten Sie ein vom Computer generiertes Wort
   - 👥 **Zwei-Spieler-Modus** - Ein Spieler denkt sich ein Wort aus, der andere rät
   - 🧠 **Computer rät** - Der Computer versucht Ihr Wort zu erraten (KI-Modus)
+  
 - **Spielfunktionen:**
-  - ASCII-Art Galgen-Visualisierung mit 7 Stufen
+  - ASCII-Art Galgen-Visualisierung mit 10 Stufen
   - Anzeige bereits geratener Buchstaben
   - Möglichkeit einzelne Buchstaben oder das komplette Wort zu raten
   - Lebensanzeige mit Fehlerzähler
   - Intelligente Computer-KI mit Buchstabenhäufigkeits-Algorithmus
+  
 - **Technische Features:**
   - Online-Wortgenerierung via API
   - Lokale Wortliste als Fallback
@@ -27,20 +29,23 @@ Galgenmännchen ist ein Wortratespiel, bei dem ein Spieler versucht, ein geheime
 ## 🏗 Projektstruktur
 
 ```
-galgenmaennchen/
-├── Galgenmaennchen.java       # Hauptklasse/Einstiegspunkt
-├── controller/
-│   └── SpielController.java   # Spielablaufsteuerung und Moduswahl
-├── model/
-│   ├── ComputerRaten.java    # KI-Logik für Computer-Ratemodus
-│   ├── Galgen.java           # ASCII-Art und Zustandsverwaltung
-│   ├── SpielLogik.java       # Kernspiellogik und Hilfsmethoden
-│   ├── SpielModus.java       # Spielmodus-Enumeration
-│   ├── SpielRunde.java       # Einzelspielrunden-Verwaltung
-│   └── WortAPI.java          # Wortgenerierung und API-Anbindung
-└── view/
-    ├── SpielAnzeige.java     # Ein-/Ausgabe-Verwaltung
-    └── Text.java             # Textkonstanten und Nachrichten
+galgenmaennchen-projekt/
+├── src/
+│   └── galgenmaennchen/
+│       ├── Galgenmaennchen.java       # Hauptklasse/Einstiegspunkt
+│       ├── controller/
+│       │   └── SpielController.java   # Spielablaufsteuerung und Moduswahl
+│       ├── model/
+│       │   ├── ComputerRaten.java    # KI-Logik für Computer-Ratemodus
+│       │   ├── Galgen.java           # ASCII-Art und Zustandsverwaltung
+│       │   ├── SpielLogik.java       # Kernspiellogik und Hilfsmethoden
+│       │   ├── SpielModus.java       # Spielmodus-Enumeration
+│       │   ├── SpielRunde.java       # Einzelspielrunden-Verwaltung
+│       │   └── WortAPI.java          # Wortgenerierung und API-Anbindung
+│       └── view/
+│           ├── SpielAnzeige.java     # Ein-/Ausgabe-Verwaltung
+│           └── Text.java             # Textkonstanten und Nachrichten
+└── README.md
 ```
 
 ## 🚀 Installation und Start
@@ -48,30 +53,78 @@ galgenmaennchen/
 ### Voraussetzungen
 - Java JDK 11 oder höher
 - Internetverbindung (für Online-Wortgenerierung, optional)
+- Terminal/Kommandozeile
 
-### Installation
-1. Klonen Sie das Repository:
-   ```bash
-   git clone [repository-url]
-   cd galgenmaennchen
-   ```
+### Schritt-für-Schritt Installation
 
-2. Kompilieren Sie das Projekt:
-   ```bash
-   javac galgenmaennchen/*.java galgenmaennchen/*/*.java
-   ```
+#### 1. Repository klonen
+```bash
+git clone https://github.com/MarkMoldenhauer/Galgenmaennchen.git
+cd galgenmaennchen-projekt
+```
 
-3. Starten Sie das Spiel:
-   ```bash
-   java galgenmaennchen.Galgenmaennchen
-   ```
+#### 2. In den src-Ordner wechseln
+```bash
+cd src
+```
+
+#### 3. Java-Dateien kompilieren
+```bash
+# Alle Java-Dateien im Projekt kompilieren
+javac galgenmaennchen/*.java galgenmaennchen/*/*.java
+```
+
+**Alternative (falls obiger Befehl nicht funktioniert):**
+```bash
+# Einzeln kompilieren mit Classpath
+javac -cp . galgenmaennchen/Galgenmaennchen.java galgenmaennchen/controller/*.java galgenmaennchen/model/*.java galgenmaennchen/view/*.java
+```
+
+#### 4. Spiel starten
+```bash
+# Hauptklasse ausführen (aus dem src-Ordner)
+java galgenmaennchen.Galgenmaennchen
+```
+
+### 📋 Vollständige Befehlsfolge (Copy & Paste)
+```bash
+git clone [repository-url]
+cd galgenmaennchen-projekt
+cd src
+javac galgenmaennchen/*.java galgenmaennchen/*/*.java
+java galgenmaennchen.Galgenmaennchen
+```
+
+### 🛠 Troubleshooting
+
+**Problem: "Klasse nicht gefunden"**
+```bash
+# Stellen Sie sicher, dass Sie im src-Ordner sind
+pwd  # Sollte .../galgenmaennchen-projekt/src anzeigen
+
+# Überprüfen Sie die kompilierten .class-Dateien
+ls galgenmaennchen/*.class
+```
+
+**Problem: Kompilierungsfehler**
+```bash
+# Alle .class-Dateien löschen und neu kompilieren
+find . -name "*.class" -delete
+javac galgenmaennchen/*.java galgenmaennchen/*/*.java
+```
+
+**Problem: Paket-Struktur**
+```bash
+# Vergewissern Sie sich, dass die Ordnerstruktur korrekt ist:
+tree galgenmaennchen/  # oder ls -la galgenmaennchen/
+```
 
 ## 🎯 Spielmodi im Detail
 
 ### 1. Einzelspieler gegen Computer
 - Der Computer wählt ein zufälliges deutsches Wort
 - Sie versuchen das Wort durch Buchstaben oder Wort-Eingaben zu erraten
-- 7 Fehlversuche sind erlaubt
+- 10 Fehlversuche sind erlaubt
 
 ### 2. Zwei-Spieler-Modus
 - Spieler 1 gibt ein Wort ein (wird versteckt eingegeben)
@@ -92,7 +145,7 @@ galgenmaennchen/
    - Modus 2: Eingabe des zu erratenden Wortes
    - Modus 3: Sie geben Ihr Wort ein
 3. **Spielrunde:** Buchstaben raten oder komplettes Wort eingeben
-4. **Spielende:** Sieg bei vollständigem Erraten oder Niederlage bei 7 Fehlern
+4. **Spielende:** Sieg bei vollständigem Erraten oder Niederlage bei 10 Fehlern
 5. **Wiederholung:** Option für weitere Spielrunden
 
 ## 🤖 KI-Algorithmus (Computer rät)
@@ -104,7 +157,7 @@ Der Computer verwendet eine intelligente Strategie:
 
 ## 📊 Spielstatistiken
 
-- **ASCII-Galgen:** 7 detaillierte Zeichenstufen
+- **ASCII-Galgen:** 10 detaillierte Zeichenstufen
 - **Fehlerzähler:** Anzeige aktueller Fehlversuche vs. Maximum
 - **Buchstabenverfolgung:** Übersicht aller bereits geratenen Buchstaben
 - **Wortfortschritt:** Live-Anzeige des Ratestatus
@@ -132,6 +185,18 @@ Der Computer verwendet eine intelligente Strategie:
 | `SpielAnzeige` | Benutzerinteraktion und Ausgaben |
 | `Text` | Zentralisierte Textkonstanten |
 | `SpielModus` | Spielmodus-Definitionen |
+
+## 🔧 Entwicklung und IDE-Setup
+
+### IntelliJ IDEA / Eclipse
+1. Projekt als Java-Projekt importieren
+2. `src` als Source-Ordner markieren
+3. Hauptklasse: `galgenmaennchen.Galgenmaennchen`
+
+### Visual Studio Code
+1. Java Extension Pack installieren
+2. Ordner öffnen
+3. `src` wird automatisch als Source-Ordner erkannt
 
 ## 🔧 Konfiguration
 
@@ -163,22 +228,13 @@ Bisher geraten: [A, E, G, M, N, O, P, R, U]
 _|___
 ```
 
-## 🚀 Zukünftige Erweiterungen
-
-- [ ] Schwierigkeitsgrade (verschiedene Wortlängen)
-- [ ] Mehrsprachige Unterstützung
-- [ ] Grafische Benutzeroberfläche (GUI)
-- [ ] Spielstatistiken und Highscores
-- [ ] Thematische Wortkategorien
-- [ ] Online-Multiplayer-Modus
-
 ## 👥 Mitwirkende
 
 - **M. Moldenhauer** - Ursprünglicher Autor und Hauptentwickler
 
 ## 📝 Lizenz
 
-Dieses Projekt ist unter der MIT-Lizenz lizenziert.
+[Lizenzinformationen hier einfügen]
 
 ## 🐛 Bekannte Probleme
 
