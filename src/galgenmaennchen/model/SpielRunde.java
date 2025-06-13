@@ -45,6 +45,9 @@ public class SpielRunde {
             }
         }
 
+        // Nach dem letzten Versuch (z. B. bei Niederlage) – finaler Stand
+        anzeige.zeigeSpielstand(anzeigeArr, leben, geraten, Galgen.getMaxLeben());
+
         return Arrays.equals(loesung, anzeigeArr);
     }
 

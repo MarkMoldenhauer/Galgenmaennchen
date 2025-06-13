@@ -13,11 +13,11 @@ import galgenmaennchen.view.Text;
 public class SpielController {
 
     /**
-     * Fragt den Benutzer nach dem gewünschten Spielmodus (Computer oder Zwei-Spieler).
-     * Gibt den entsprechenden {@link SpielModus} zurück.
-     * 
+     * Fragt den Benutzer nach dem gewünschten Spielmodus.
+     * Gibt den entsprechenden {@link SpielModus} zurück oder {@code null}, wenn das Spiel beendet werden soll.
+     *
      * @param scanner Der Scanner zur Benutzereingabe (z. B. System.in)
-     * @return {@code SpielModus.COMPUTER} oder {@code SpielModus.ZWEISPIELER}, je nach Benutzereingabe
+     * @return {@link SpielModus} entsprechend der Eingabe oder {@code null} zum Beenden
      */
     public static SpielModus ermittleModus(Scanner scanner) {
         SpielAnzeige anzeige = new SpielAnzeige(scanner);
@@ -27,12 +27,17 @@ public class SpielController {
             anzeige.frage(Text.MODUS_WAHL);
             String eingabe = anzeige.leseEingabe();
 
-            if (eingabe.equals("1")) {
-                return SpielModus.COMPUTER;
-            } else if (eingabe.equals("2")) {
-                return SpielModus.ZWEISPIELER;
-            } else {
-                anzeige.zeigeNachricht(Text.MODUS_UNGUELTIG);
+            switch (eingabe) {
+                case "1":
+                    return SpielModus.COMPUTER;
+                case "2":
+                    return SpielModus.ZWEISPIELER;
+                case "3":
+                    return SpielModus.COMPUTER_RATEN;
+                case "4":
+                    return null;
+                default:
+                    anzeige.zeigeNachricht(Text.MODUS_UNGUELTIG);
             }
         }
     }
