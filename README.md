@@ -36,15 +36,15 @@ galgenmaennchen-projekt/
 │       ├── controller/
 │       │   └── SpielController.java   # Spielablaufsteuerung und Moduswahl
 │       ├── model/
-│       │   ├── ComputerRaten.java    # KI-Logik für Computer-Ratemodus
-│       │   ├── Galgen.java           # ASCII-Art und Zustandsverwaltung
-│       │   ├── SpielLogik.java       # Kernspiellogik und Hilfsmethoden
-│       │   ├── SpielModus.java       # Spielmodus-Enumeration
-│       │   ├── SpielRunde.java       # Einzelspielrunden-Verwaltung
-│       │   └── WortAPI.java          # Wortgenerierung und API-Anbindung
+│       │   ├── ComputerRaten.java     # KI-Logik für Computer-Ratemodus
+│       │   ├── Galgen.java            # ASCII-Art und Zustandsverwaltung
+│       │   ├── SpielLogik.java        # Kernspiellogik und Hilfsmethoden
+│       │   ├── SpielModus.java        # Spielmodus-Enumeration
+│       │   ├── SpielRunde.java        # Einzelspielrunden-Verwaltung
+│       │   └── WortAPI.java           # Wortgenerierung und API-Anbindung
 │       └── view/
-│           ├── SpielAnzeige.java     # Ein-/Ausgabe-Verwaltung
-│           └── Text.java             # Textkonstanten und Nachrichten
+│           ├── SpielAnzeige.java      # Ein-/Ausgabe-Verwaltung
+│           └── Text.java              # Textkonstanten und Nachrichten
 └── README.md
 ```
 
@@ -241,6 +241,7 @@ Dieses Projekt ist unter der MIT-Lizenz lizenziert.
 - API-Abhängigkeit für Online-Wortgenerierung
 - Umlaute werden derzeit nicht unterstützt
 - Nur deutsche Wörter verfügbar
+- Noch keine Option, um nach der Spielrunde ins Hauptmenü zurückzukehren (work in progress)
 
 ## 📞 Support
 
